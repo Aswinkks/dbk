@@ -5,19 +5,6 @@ on:
   push:
     branches:
       - 'uat'
-      
-permissions:
-  id-token: write
-  actions: write
-  checks:	write
-  contents: write	
-  deployments: write	
-  issues: write	
-  packages: write	
-  pages: write	
-  repository-projects: write	
-  security-events: write
-  statuses: write
   
 jobs:
   test-1:
@@ -45,7 +32,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_SECRET }}
         with:
           tag_name: ${{ github.run_number }}
           release_name: DBK Release
