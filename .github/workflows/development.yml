@@ -1,5 +1,8 @@
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - development
+
       
 name: Running the pipeline for development ENV
 
@@ -8,9 +11,10 @@ jobs:
     name: Create Releases
     runs-on: ubuntu-latest
     steps:
-      - name: Display
-        run: |
-          echo "Finished running development pipeline"
-          echo "Owner: ${{ github.repository_owner }}"
-          echo "Repository: ${{ github.event.repository.name }}"
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+         ref: development
+         
+
 
