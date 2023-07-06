@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Display
         run: |
-         echo "test-2"
+          echo "test-2"
           
   release-job:
     runs-on: ubuntu-latest
