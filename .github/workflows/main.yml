@@ -14,6 +14,8 @@ jobs:
     name: Fetching the tag
     outputs:
       tag: ${{ steps.fetch_tag.outputs.tag }}
+    environment:
+        name: Production
     runs-on: ubuntu-latest
     steps:
       - name: simple
