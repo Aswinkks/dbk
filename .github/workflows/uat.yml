@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display
-        runss: |
-          echo test1
+        run: |
+          abcd
   test-2:
     runs-on: ubuntu-latest
     steps:
       - name: Display
-        runss: |
-         echo test2
+        run: |
+         abcd
           
   release-job:
     runs-on: ubuntu-latest
