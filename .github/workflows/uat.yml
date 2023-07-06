@@ -20,5 +20,5 @@ jobs:
     needs: intergration-test
     steps:
       - name: Commands
-        with: |
+        run: |
             echo "hi"
