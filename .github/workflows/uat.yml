@@ -1,9 +1,9 @@
+name: UAT env
+
 on:
   push:
     branches:
       - 'uat'
-      
-name: UAT env
 
 jobs:
   test-1:
