@@ -1,4 +1,4 @@
-name: Development ENV
+name: Dev Pipeline
 
 on:
   push:
