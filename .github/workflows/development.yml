@@ -12,5 +12,5 @@ jobs:
         run: |
           echo "Finished running development pipeline"
           echo "Owner: ${{ github.repository_owner }}"
-          echo "Repository: ${{ github.repository }}"
+          echo "Repository: ${{ github.event.repository.name }}"
 
