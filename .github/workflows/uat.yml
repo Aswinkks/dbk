@@ -1,1 +1,26 @@
+on:
+  push:
+    branches:
+      - 'uat'
+      
+name: Running the pipeline for uat ENV
 
+jobs:
+  release:
+    name: Create Releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+         ref: uat
+      - name: Display
+        run: |
+          USER=${{ github.repository_owner }}
+          REPO=${{ github.event.repository.name }}
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
+          
+          ECHO $USER $REPO
+
+          API_URL="https://api.github.com/repos/${USER}/${REPO}/releases/latest"
+          curl -s -H "Authorization: token ${TOKEN}" "${API_URL}"
