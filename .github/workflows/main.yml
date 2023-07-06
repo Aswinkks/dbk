@@ -67,6 +67,7 @@ jobs:
         run: |
           python_files=$(find . -name "*.py" -print)
           for file in $python_files; do
+              echo $file
               pylint $file
           done
       - name: yaml-lint
