@@ -12,8 +12,7 @@ jobs:
     steps:
       - name: Display
         run: |
-          API_URL="https://api.github.com/repos/${USER}/${REPO}/releases/latest"
-          curl -s -H "Authorization: token ${TOKEN}" "${API_URL}"
+          bjkhljlkj
     
   release-job:
     runs-on: ubuntu-latest
