@@ -11,13 +11,8 @@ jobs:
     name: Integration Test
     runs-on: ubuntu-latest
     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-#         with:
-#          ref: uat
       - name: Display
         run: |
- 
           API_URL="https://api.github.com/repos/${USER}/${REPO}/releases/latest"
           curl -s -H "Authorization: token ${TOKEN}" "${API_URL}"
     
