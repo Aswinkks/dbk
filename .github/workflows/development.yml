@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+      - 'development'
+      
+name: Running the pipeline for development ENV
+
+jobs:
+  release:
+    name: Create Releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+         ref: development
+      - name: Display
+        run: |
+          echo "Finished running development pipeline"
