@@ -8,7 +8,6 @@ name: uat ENV
 
 jobs:
   intergration-test:
-    name: Integration Test
     runs-on: ubuntu-latest
     steps:
       - name: Display
@@ -17,7 +16,6 @@ jobs:
           curl -s -H "Authorization: token ${TOKEN}" "${API_URL}"
     
   release-job:
-    name: Create Releases
     runs-on: ubuntu-latest
     needs: intergration-test
     steps:
