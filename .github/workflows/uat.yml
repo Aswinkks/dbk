@@ -1,8 +1,7 @@
 on:
-  workflow_dispatch:
-#   push:
-#     branches:
-#       - 'uat'
+  push:
+    branches:
+      - 'main'
       
 name: uat ENV
 
@@ -31,7 +30,7 @@ jobs:
   d:
     runs-on: ubuntu-latest
     needs: [test-1,test-2]
-    if: always() && contains(needs.*.result, 'success')
+    if: always()  && (needs.test-1.result == 'failure' || needs.test-2.result == 'failure') 
     steps:
       - run: |
           echo "I don't want this to run unless b or c fails!"
