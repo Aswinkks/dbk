@@ -4,7 +4,7 @@ on:
       - development
 
       
-name: Running the pipeline for development ENV
+name: Development ENV
 
 jobs:
   release:
