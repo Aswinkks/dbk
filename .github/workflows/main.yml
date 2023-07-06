@@ -1,1 +1,55 @@
+name: Prod Pipeline
+on:
+  release:
+    types: 
+      - published
+      - deleted
 
+jobs:
+  fetch-tag-step:
+    name: Fetching the tag
+    outputs:
+      tag: ${{ steps.fetch_tag.outputs.tag }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: simple
+        id: fetch_tag
+        run: |
+            USER=${{ github.repository_owner }}
+            REPO=${{ github.event.repository.name }}
+            TOKEN=${{ github.token }}
+
+            API_URL="https://api.github.com/repos/${USER}/${REPO}/releases/latest"
+
+            # Download the release artifact details
+            URL=$(curl -s -H "Authorization: token ${TOKEN}" "${API_URL}")
+
+            name=$(echo "$URL" | jq -r '.name')
+            tag_name=$(echo "$URL" | jq -r '.tag_name')
+            commit_id=$(echo "$URL" | jq -r '.target_commitish')
+            
+            echo "----------------------------------"
+            echo "The Release Details are as follows"
+            echo "Name: ${name}"
+            echo "Tag: ${tag_name}"
+            echo "CommitId: ${commit_id}"
+            echo "---------------------------------"
+            echo "tag=$tag_name"  >> "$GITHUB_OUTPUT"
+            
+  Download-Release:
+      name: Download Release
+      runs-on: ubuntu-latest
+      needs: fetch-tag-step
+      environment: ${{ needs.fetch-tag-step.outputs.tag }}
+      steps: 
+      - name: Download the Release    
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.fetch-tag-step.outputs.tag }}
+          token: ${{ github.token }}
+      - name: check contents 
+        run: |
+          ls 
+          pwd
+          echo hello
+          cat main.yaml
