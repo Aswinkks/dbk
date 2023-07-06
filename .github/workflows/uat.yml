@@ -3,11 +3,11 @@ on:
     branches:
       - 'uat'
       
-name: Running the pipeline for uat ENV
+name: uat ENV
 
 jobs:
-  release:
-    name: Create Releases
+  intergration-test:
+    name: Integration Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,8 +19,14 @@ jobs:
           USER=${{ github.repository_owner }}
           REPO=${{ github.event.repository.name }}
           TOKEN=${{ secrets.GITHUB_TOKEN }}
-          
-          ECHO $USER $REPO
-
           API_URL="https://api.github.com/repos/${USER}/${REPO}/releases/latest"
           curl -s -H "Authorization: token ${TOKEN}" "${API_URL}"
+    
+  release-job:
+    name: Create Releases
+    runs-on: ubuntu-latest
+    needs: intergration-test
+    steps:
+      - name: Commands
+        with: |
+            ls
