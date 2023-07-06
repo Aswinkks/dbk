@@ -1,10 +1,9 @@
+name: Development ENV
+
 on:
   push:
     branches:
       - development
-
-      
-name: Development ENV
 
 jobs:
   release:
