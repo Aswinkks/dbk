@@ -1,7 +1,5 @@
 on:
-  push:
-    branches:
-      - 'development'
+  workflow_dispatch:
       
 name: Running the pipeline for development ENV
 
@@ -17,3 +15,6 @@ jobs:
       - name: Display
         run: |
           echo "Finished running development pipeline"
+          echo "Owner: ${{ github.repository_owner }}"
+          echo "Repository: ${{ github.repository }}"
+
