@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display
-        run: |
+        runss: |
           echo test1
   test-2:
     runs-on: ubuntu-latest
     steps:
       - name: Display
-        run: |
+        runss: |
          echo test2
           
   release-job:
