@@ -1,10 +1,15 @@
 name: UAT env
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'uat'
-
+      
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   test-1:
     runs-on: ubuntu-latest
